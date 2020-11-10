@@ -1,26 +1,48 @@
 package com.george.rxjava;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String RXJAVA_TAG = "RXJAVA";
+    @BindView(R.id.btn1)
+    AppCompatButton btn1;
+    @BindView(R.id.btn2)
+    AppCompatButton btn2;
+    @BindView(R.id.btn3)
+    AppCompatButton btn3;
+    @BindView(R.id.btn4)
+    AppCompatButton btn4;
+    @BindView(R.id.btn5)
+    AppCompatButton btn5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        initOnclickListener(btn1);
+    }
+
+    private void initOnclickListener(View... views) {
+        for (View view :
+                views) {
+            view.setOnClickListener(this);
+        }
     }
 
     private void demo1() {
@@ -53,15 +75,22 @@ public class MainActivity extends AppCompatActivity {
         //创建观察者Observer对象
         Observer<Integer> observer = new Observer<Integer>() {
             //创建对象时通过复写对应的事件方法，从而响应对应的事件
+            private Disposable disposable;
+
             @Override
             public void onSubscribe(Disposable d) {
                 Log.e(RXJAVA_TAG, "开始采用subscribe链接" + d.isDisposed());
+                disposable = d;
             }
 
             //当被观察者生产next事件 & 观察者接收到时，会调用改复写方法  进行响应
             @Override
             public void onNext(Integer integer) {
                 Log.e(RXJAVA_TAG, "对Next事件作出响应 value:" + integer);
+                if (integer == 2) {
+                    //设置切断观察者和被观察者的连接
+                    disposable.dispose();
+                }
             }
 
             //当被观察者生产Error事件 & 观察者接收到时，会调用改复写方法  进行响应
@@ -76,32 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(RXJAVA_TAG, "对Complete事件作出响应");
             }
         };
+        observable.subscribe(observer);
 
-        Subscriber<Integer> subscriber = new Subscriber<Integer>() {
-            @Override
-            public void onSubscribe(Subscription s) {
-
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-
-        //observable.subscribe(observer);
-
-        //observable.subscribe(subscriber);
 
     }
 
@@ -109,13 +114,121 @@ public class MainActivity extends AppCompatActivity {
         //Rxjava提供其他方法用于创建Observable
         //方法一：just(T...) 直接将传入的参数衣服发送出来
         Observable<String> observable1 = Observable.just("A", "B", "C");
+        Observer<String> observer = new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e(RXJAVA_TAG, "开始采用subscribe链接" + d.isDisposed());
+            }
 
+            @Override
+            public void onNext(String s) {
+                Log.e(RXJAVA_TAG, "对Next事件作出响应 value:" + s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(RXJAVA_TAG, "对Error事件作出响应 Throwable:" + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(RXJAVA_TAG, "对Complete事件作出响应");
+            }
+        };
+        observable1.subscribe(observer);
     }
 
     private void demo3() {
         //方法二：from()
         String[] words = {"E", "F", "G"};
         Observable<String> observable2 = Observable.fromArray(words);
+        Observer<String> observer = new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e(RXJAVA_TAG, "开始采用subscribe链接" + d.isDisposed());
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.e(RXJAVA_TAG, "对Next事件作出响应 value:" + s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(RXJAVA_TAG, "对Error事件作出响应 Throwable:" + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(RXJAVA_TAG, "对Complete事件作出响应");
+            }
+        };
+        observable2.subscribe(observer);
     }
 
+    private void demo4() {
+        //Rxjava 链式调用
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
+                emitter.onNext(1);
+                emitter.onNext(2);
+                emitter.onNext(3);
+                emitter.onNext(4);
+                emitter.onNext(5);
+                emitter.onComplete();
+            }
+        }).subscribe(new Observer<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.e(RXJAVA_TAG, "开始采用subscribe链接" + d.isDisposed());
+            }
+
+            @Override
+            public void onNext(Integer s) {
+                Log.e(RXJAVA_TAG, "对Next事件作出响应 value:" + s);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(RXJAVA_TAG, "对Error事件作出响应 Throwable:" + e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.e(RXJAVA_TAG, "对Complete事件作出响应");
+            }
+        });
+    }
+
+    private void demo5() {
+        Observable.just("hello").subscribe(new Consumer<String>() {
+            @SuppressLint("CheckResult")
+            @Override
+            public void accept(String s) throws Exception {
+                System.out.println("value:" + s);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn1:
+                demo1();
+                break;
+            case R.id.btn2:
+                demo2();
+                break;
+            case R.id.btn3:
+                demo3();
+                break;
+            case R.id.btn4:
+                demo4();
+                break;
+            case R.id.btn5:
+                demo5();
+                break;
+        }
+    }
 }
