@@ -1,6 +1,7 @@
 package com.george.rxjava;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,13 +30,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AppCompatButton btn4;
     @BindView(R.id.btn5)
     AppCompatButton btn5;
+    @BindView(R.id.btn6_create)
+    AppCompatButton btn6Create;
+    @BindView(R.id.btn7_just)
+    AppCompatButton btn7Just;
+    @BindView(R.id.btn8_fromArray)
+    AppCompatButton btn8FromArray;
+    @BindView(R.id.btn_fromIterable)
+    AppCompatButton btnFromIterable;
+    @BindView(R.id.btn10_other)
+    AppCompatButton btn10Other;
+    @BindView(R.id.btn11_defer)
+    AppCompatButton btn11Defer;
+    @BindView(R.id.btn12_timer)
+    AppCompatButton btn12Timer;
+    @BindView(R.id.btn13_interval)
+    AppCompatButton btn13Interval;
+    @BindView(R.id.btn14_intervalRange)
+    AppCompatButton btn14IntervalRange;
+    @BindView(R.id.btn15_range)
+    AppCompatButton btn15Range;
+    @BindView(R.id.btn16_rangeLong)
+    AppCompatButton btn16RangeLong;
+    @BindView(R.id.btn17_request_example)
+    AppCompatButton btn17RequestExample;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initOnclickListener(btn1);
+        initOnclickListener(btn1, btn2, btn3, btn4, btn5, btn6Create, btn7Just, btn8FromArray, btn10Other,
+                btn11Defer, btn12Timer, btn13Interval, btn14IntervalRange, btn15Range, btn16RangeLong,
+                btn17RequestExample);
     }
 
     private void initOnclickListener(View... views) {
@@ -228,6 +255,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn5:
                 demo5();
+                break;
+            case R.id.btn17_request_example:
+                startActivity(new Intent(MainActivity.this, Demo17RxRetriftExampleActivity.class));
                 break;
         }
     }

@@ -13,6 +13,7 @@
         android:fitsSystemWindows="true"
         android:gravity="center"
         android:layout_marginTop="150dp"
+        android:layout_marginBottom="60dp"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -74,35 +75,35 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn6"
+            android:id="@+id/btn6_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="创建操作符create"
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn7"
+            android:id="@+id/btn7_just"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="快速创建操作符just(最多发送10个参数)"
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn8"
+            android:id="@+id/btn8_fromArray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="快速创建fromArray(发送10个以上的时间（数组形式）)"
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn9"
+            android:id="@+id/btn_fromIterable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="fromIterable(发送10个以上的时间（集合形式）)"
             android:textAllCaps="false" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn10"
+            android:id="@+id/btn10_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="其他(empty()/error()/never())使用场景"
@@ -125,40 +126,100 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn11"
+            android:id="@+id/btn11_defer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="defer():直到有观察者订阅时，才动态的创建被观察者"
             android:textAllCaps="false" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn12"
+            android:id="@+id/btn12_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="timer():延迟指定时间后，调用一次onNext"
             android:textAllCaps="false" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn13"
+            android:id="@+id/btn13_interval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="interval():每隔一段时间，就发送事件"
             android:textAllCaps="false" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn14"
+            android:id="@+id/btn14_intervalRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="intervalRange():每隔一段时间，就发送事件，可指定发送的数据的数量"
             android:textAllCaps="false" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn15"
+            android:id="@+id/btn15_range"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="range():连续发送1个事件序列，可指定范围，无延迟"
             android:textAllCaps="false" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn16"
+            android:id="@+id/btn16_rangeLong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="rangeLong():类似于range，区别在于支持数据类型Long"
+            android:textAllCaps="false" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="轮询案例"
+            android:textSize="28dp"
+            android:textStyle="bold" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn17_request_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(无条件)网络请求轮询具体实现"
+            android:textAllCaps="false" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="变换操作符"
+            android:textSize="28dp"
+            android:textStyle="bold" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn18_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="将被观察者发送的事件转换为任意的类型事件"
+            android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn19_flatMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="将被观察者发送的事件进行拆分、单独转换，再合并成一个新的事件序列，最后进行发送（事件无序）"
+            android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn20_ConcatMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="将被观察者发送的事件进行拆分、单独转换，再合并成一个新的事件序列，最后进行发送（与旧序列一致）"
+            android:textAllCaps="false" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn21_buffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定期从被观察者（Observable）需要发送的事件冲获取一定数量的事件、放到缓存区中，最终发送"
             android:textAllCaps="false" />
     </LinearLayout>
 
