@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_999999"
+            android:text="textView 1"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_666666"
+            android:text="TextView 2"
+            app:layout_constraintLeft_toRightOf="@id/tv_1"
+            app:layout_constraintTop_toTopOf="@id/tv_1"
+            app:layout_goneMarginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="TextView 3"
+            app:layout_constraintLeft_toLeftOf="@id/tv_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_1"
+            app:layout_goneMarginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_select_red"
+            android:text="TextView 4"
+            app:layout_constraintLeft_toRightOf="@id/tv_1"
+            app:layout_constraintTop_toTopOf="@id/tv_3"
+            app:layout_goneMarginLeft="10dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="按钮1"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="按钮2:隐藏btn1试试"
+            android:visibility="visible"
+            app:layout_constraintLeft_toRightOf="@id/btn1"
+            app:layout_constraintTop_toTopOf="@id/btn1"
+            app:layout_goneMarginTop="120dp" />
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="按钮3"
+            app:layout_constraintLeft_toRightOf="@id/btn2"
+            app:layout_constraintTop_toTopOf="@id/btn2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="居中及bias"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="A"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="B"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="意思匹配内容大小但不超过约束限制，注意和直接指定宽度为wrap_content的区别就是不超过约束限制"
+            app:layout_constraintLeft_toRightOf="@id/btn5"
+            app:layout_constraintRight_toLeftOf="@id/btn6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="wrap" />
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意思匹配内容大小但不超过约束限制，注意和直接指定宽度为wrap_content的区别就是不超过约束限制"
+            app:layout_constraintLeft_toRightOf="@id/btn5"
+            app:layout_constraintRight_toLeftOf="@id/btn6"
+            app:layout_constraintTop_toBottomOf="@id/btn7" />
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="app:layout_constrainedWidth=”true|false” 设置为true也可以限制内容不超过约束"
+            app:layout_constraintLeft_toRightOf="@id/btn5"
+            app:layout_constraintRight_toLeftOf="@id/btn6"
+            app:layout_constraintTop_toBottomOf="@id/btn8"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
+            app:layout_constrainedHeight="true"/>
+
+
+        <Button
+            android:id="@+id/btn10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="layout_constraintDimensionRatio，即宽和高成一定的比例，也可以是width/height的值。该属性生效的前提：宽和高其中有一项为0dp，有constraint
+                            \n 1.如果只有一项为0dp，则该项值按照比例计算出来。比如高为20dp，宽为0dp，radio为2:1,则最终宽为40dp
+                            \n 2.如果两项都为0dp，则尺寸会设置为满足约束的最大值并保持比例。因为这是系统计算的，有的时候不是我们想要的，我们也可以通过在前面加H、W来指定是哪一个边需要计算。例如H,2:1,则是指宽度匹配约束，高度是宽度的1/2 "
+            app:layout_constraintLeft_toRightOf="@id/btn5"
+            app:layout_constraintRight_toLeftOf="@id/btn6"
+            app:layout_constraintTop_toBottomOf="@id/btn9"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintDimensionRatio="1:2"/>
+
+        <Button
+            android:id="@+id/btn11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="max/min 值"
+            app:layout_constraintLeft_toRightOf="@id/btn5"
+            app:layout_constraintRight_toLeftOf="@id/btn6"
+            app:layout_constraintTop_toBottomOf="@id/btn10"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintWidth_max="100dp"
+            app:layout_constraintWidth_min="50dp"
+            app:layout_constraintHeight_min="44dp"
+            app:layout_constraintHeight_max="120dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constrainedHeight="true"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="A"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+        <Button
+            android:id="@+id/btn13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="A"
+            app:layout_constraintLeft_toRightOf="@id/btn12"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+        <Button
+            android:id="@+id/btn14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="A"
+            app:layout_constraintLeft_toRightOf="@id/btn13"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
